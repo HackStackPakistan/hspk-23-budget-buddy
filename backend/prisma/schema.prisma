@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,48 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+
+// all the models are subject to change
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  transactions Transaction[]
+  budgets   Budget[]
+  goals     Goal[]
+}
+
+model Transaction {
+  id          Int       @id @default(autoincrement())
+  userID      Int
+  user        User      @relation(fields: [userID], references: [id])
+  transactionDate DateTime
+  transactionType String
+  amount      Float
+  category    String
+  description String?
+  paymentMethod String?
+}
+
+model Budget {
+  id           Int      @id @default(autoincrement())
+  userID       Int
+  user         User     @relation(fields: [userID], references: [id])
+  budgetName   String
+  budgetAmount Float
+  budgetCategory String
+  budgetTimePeriod String
+}
+
+model Goal {
+  id          Int       @id @default(autoincrement())
+  userID      Int
+  user        User      @relation(fields: [userID], references: [id])
+  goalName    String
+  goalAmount  Float
+  targetDate  DateTime
+  currentProgress Float
 }
