@@ -1,6 +1,19 @@
-<app-header></app-header>
+<!-- <div class="w-[80%] mx-auto">
+    <div class="w-[60%] h-[15rem] bg-gray-400 text-center mb-4" *ngIf="!isSignedIn">
+        <h1>Sign Up Function</h1>
+        <input class="my-2 rounded-lg p-2" type="text" #email><br>
+        <input class="my-2 rounded-lg p-2" type="text" #pass><br>
+        <button class="bg-red-400 px-4 py-2" (click)="onSignUp(email.value, pass.value)">SignUp</button>
+        <button class="bg-black text-white px-8 py-2" (click)="signUpGoogle()">SignUp with Google</button>
+    </div>
 
+    <div class="w-[60%] h-[15rem] bg-fuchsia-100 text-center" *ngIf="!isSignedIn">
+        <h1>SignIn Function</h1>
+        <input class="my-2 rounded-lg p-2" type="text" #emailSign><br>
+        <input class="my-2 rounded-lg p-2" type="text" #passSign><br>
+        <button class="bg-red-400 px-4 py-2" (click)="onSignIn(emailSign.value, passSign.value)">SignIn</button>
+    </div>
 
-<div class="main">
-    <router-outlet></router-outlet>
-</div>
+</div> -->
+
+<router-outlet></router-outlet>

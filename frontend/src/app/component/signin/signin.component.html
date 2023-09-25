@@ -1,0 +1,49 @@
+<body>
+    <div class="container">
+      <input type="checkbox" id="check">
+      <div class="login form">
+        <header>Login</header>
+        <form action="#">
+          <input type="text" placeholder="Enter your email" #email>
+          <input type="password" placeholder="Enter your password" #pass>
+          <a href="#" routerLink="/home">Forgot password?</a>
+          <button class="button" (click)="onSignIn(email.value, pass.value)">SignIn</button>
+
+        <div class="signup">
+          <span class="signup">Don't have an account?
+           <label for="check">Signup</label>
+          </span>
+        </div>
+        <div class="line"></div>
+
+            <div class="media-options">
+                <button (click)="signUpGoogle()">
+                    <img src="https://developers.google.com/static/identity/images/btn_google_signin_dark_normal_web.png" alt="" class="google-img">
+                </button>
+            </div>
+        </form>
+      </div>
+
+      <div class="registration form">
+        <header>Signup</header>
+        <form action="#">
+          <input type="text" placeholder="Enter your email" #emailSign>
+          <input type="password" placeholder="Create a password" #passSign>
+          <input type="password" placeholder="Confirm your password">
+          <button class="button" (click)="onSignUp(emailSign.value, passSign.value)">Signup</button>
+        </form>
+        <div class="signup">
+          <span class="signup">Already have an account?
+           <label for="check">Login</label>
+          </span>
+        </div>
+        <div class="line"></div>
+
+            <div class="media-options">
+                <button (click)="signUpGoogle()">
+                    <img src="https://developers.google.com/static/identity/images/btn_google_signin_dark_normal_web.png" alt="" class="google-img">
+                </button>
+            </div>
+      </div>
+    </div>
+  </body>
