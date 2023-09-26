@@ -7,46 +7,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 // all the models are subject to change
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  password  String
+  id           Int           @id @default(autoincrement())
+  userID       String        @unique
+  email        String        @unique
   transactions Transaction[]
-  budgets   Budget[]
-  goals     Goal[]
+  budgets      Budget[]
+  goals        Goal[]
 }
 
 model Transaction {
-  id          Int       @id @default(autoincrement())
-  userID      Int
-  user        User      @relation(fields: [userID], references: [id])
+  id              Int      @id @default(autoincrement())
+  userID          Int
+  user            User     @relation(fields: [userID], references: [id])
   transactionDate DateTime
   transactionType String
-  amount      Float
-  category    String
-  description String?
-  paymentMethod String?
+  amount          Float
+  category        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  description     String?
+  paymentMethod   String?
 }
 
 model Budget {
-  id           Int      @id @default(autoincrement())
-  userID       Int
-  user         User     @relation(fields: [userID], references: [id])
-  budgetName   String
-  budgetAmount Float
-  budgetCategory String
+  id               Int      @id @default(autoincrement())
+  userID           Int
+  user             User     @relation(fields: [userID], references: [id])
+  budgetName       String
+  budgetAmount     Float
+  budgetCategory   String
   budgetTimePeriod String
+  budgetStartDate  DateTime
+  budgetEndDate    DateTime
 }
 
 model Goal {
-  id          Int       @id @default(autoincrement())
-  userID      Int
-  user        User      @relation(fields: [userID], references: [id])
-  goalName    String
-  goalAmount  Float
-  targetDate  DateTime
+  id              Int      @id @default(autoincrement())
+  userID          Int
+  user            User     @relation(fields: [userID], references: [id])
+  goalName        String
+  goalAmount      Float
+  targetDate      DateTime
   currentProgress Float
+  goalCategory    String
+  goalType        String
+  goalPriority    String
+  goalStatus      String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
