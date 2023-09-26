@@ -15,6 +15,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { VerifyEmailComponent } from './component/verify-email/verify-email.comp
     DashboardComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    HomeComponent,
   ],
   imports: [
     AngularFireModule.initializeApp({
