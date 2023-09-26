@@ -1,0 +1,42 @@
+
+.main-div {
+  height: 100vh;
+  background: #7c4fe0 url("../../assets/bg-animation-thumb.png") repeat-x scroll 0 0 /
+    cover;
+  -webkit-animation: bg-animate 50s linear infinite;
+  animation: bg-animate 50s linear infinite;
+}
+.bg-overlay {
+  position: relative;
+  z-index: 0;
+}
+.bg-overlay::after {
+  background: rgba(0, 0, 0, 0) -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#297bff),
+      to(#f90db1)
+    ) repeat scroll 0 0;
+  background: rgba(0, 0, 0, 0)
+    linear-gradient(to right, #297bff 0%, #f90db1 100%) repeat scroll 0 0;
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  z-index: -1;
+}
+@keyframes bg-animate {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 60% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
