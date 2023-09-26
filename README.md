@@ -1,28 +1,76 @@
-# Welcome to Hackstack Pakistan 2023! 🚀
+# BudgetBuddy - Personal Finance Manager
 
-Hello, innovators! We are thrilled that you've decided to be a part of Hackstack Pakistan 2023. This journey promises to be packed with learning, innovation, and challenges. Your passion and creativity will be the driving force behind the next wave of tech advancements in Pakistan.
+BudgetBuddy is an AI personal finance management tool that helps individuals take control of their finances, track expenses, set budgets, and work toward their financial goals.
 
-## Getting Started 🛠
+## Features
 
-1. **Set up Your Repository**  
-   - Before diving in, make sure to remove this README file from your project. Replace it with a README that gives details about your project, the tech stack used, how to set it up, and any other relevant information that judges or other viewers might need.
-   - Make sure to keep ALL your code in this repository. For example, if you have a backend and a frontend, create two folders named `backend` and `frontend` respectively to keep everything in this repository.
+- **Expense Tracking:** Easily log and categorize your expenses to gain insights into your spending habits.
 
-2. **Follow the Rules**  
-   - It's crucial to adhere to the guidelines and rules of the hackathon. This ensures a fair and enjoyable experience for all. You can find the detailed rules and regulations [here](https://codewithahsan.dev/events/hackstack/2023).
-   - It is also important to push your commits every day. This helps us keep track of regular coding practices.
-   - It is **SUPER IMPORTANT** that you join the voice channel of your team on the Discord server and stay active on it while you code and work on your projects. This is because then mentors will be able to help you out right there in the voice channels.
+- **Budget Management:** Set up budgets for different categories and track your spending against them.
 
-3. **Stay Updated**  
-   We'll be pushing updates, announcements, and important information through our discord. Make sure to stay connected (install the discord mobile app if you have not already) to avoid missing out on any crucial details.
+- **Financial Goals:** Define your financial goals, set targets, and monitor your progress.
 
-## Support & Questions 🤔
+- **User-Friendly Interface:** A simple and intuitive user interface for easy navigation and data entry.
 
-Should you face any issues or have questions, don't hesitate to reach out. Our team and mentors are here to guide and assist you.
+- **AI Helper:** An Inbuilt AI Model that will keep track of your budget and help you with your questions related to financing.
 
-## Wrapping Up 🎉
+## Technologies Used
 
-Remember, it's not just about winning; it's about learning, collaboration, and turning your innovative ideas into reality. Best of luck, and may the best projects shine!
+- **Backend:** Node.js, Express.js
 
-With warm regards,  
-The Hackstack Pakistan 2023 Team
+- **Frontend:** Angular
+
+- **Database:** MySql (with Prisma ORM)
+
+- **Authentication:** Firebase
+
+## Installation
+
+1. Clone the repository:
+
+   shell
+   git clone https://github.com/HackStackPakistan/hspk-23-budget-buddy.git
+   cd hspk-23-budget-buddy
+   
+
+2. Install dependencies for both the backend and frontend:
+
+   shell
+   cd backend
+   npm install
+   cd ../frontend
+   npm install
+   
+
+3. Set up your environment variables:
+
+   Create a `.env` file in the `backend` directory and add your configuration.
+
+4. Start the application:
+
+   shell
+   cd backend
+   npm start
+   
+
+   ```shell
+   cd frontend
+   ng serve
+   
+
+   Visit `http://localhost:4200` in your web browser to access BudgetBuddy.
+
+## Contributing
+
+We welcome contributions from the community. Please follow our [contribution guidelines](CONTRIBUTING.md) to get started.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.md).
+
+## Contact
+
+If you have any questions or suggestions, please feel free to [contact us](mailto:arayanmemon338@gmail.com).
+
+Happy budgeting!
+```
