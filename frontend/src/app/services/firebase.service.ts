@@ -10,13 +10,12 @@ import Swal from 'sweetalert2';
 })
 export class FirebaseService {
 
-  isLoggedIn = false
   constructor(public firebaseAuth: AngularFireAuth, private _router: Router) {  }
   
   signin(email: string, password: string){
     this.firebaseAuth.signInWithEmailAndPassword(email, password)
     .then((res)=>{
-        localStorage.setItem('token', 'true');        
+        localStorage.setItem('user', 'true');        
         this._router.navigate(['dashboard'])
         
     }, err => {
@@ -34,7 +33,7 @@ export class FirebaseService {
   signup(email: string, password: string, username: string){
     this.firebaseAuth.createUserWithEmailAndPassword(email, password)
     .then((res)=>{
-        localStorage.setItem('token', 'true');
+        localStorage.setItem('user', 'true');
         console.log(res);
         
     }, err => {
@@ -43,11 +42,16 @@ export class FirebaseService {
     })
   }
 
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null ? true : false;
+  }
+
   signUpWithGoogle(){
-    return this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
+    this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
     .then((res)=>{
         this._router.navigate(['dashboard'])
-        localStorage.setItem('token', 'true');
+        localStorage.setItem('user', 'true');
         console.log(res);
     }, err => {
         alert(err.message)

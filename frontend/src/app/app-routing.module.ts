@@ -5,13 +5,13 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './services/guard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
   { path: 'sign-in', component: SigninComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  // { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard]},
 ];
 
 @NgModule({
