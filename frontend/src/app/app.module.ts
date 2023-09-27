@@ -12,17 +12,17 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './component/signin/signin.component';
 import { SignupComponent } from './component/signup/signup.component';
-import { DashboardComponent } from './component/dashboard/dashboard.component';
+
 import { FormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { HomeComponent } from './home/home.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     SignupComponent,
-    DashboardComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
     HomeComponent,

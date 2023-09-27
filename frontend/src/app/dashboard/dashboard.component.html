@@ -1,0 +1,95 @@
+<div class="flex">
+    <div class="h-[100vh] w-[12vw] bg-[#1A1818D9] px-2 py-4 text-white hidden sm:block">
+        <img src="../../assets/transparent 1.png" alt="">
+        <div class="flex flex-col mt-10 mx-5 space-y-5">
+            <div>Home</div>
+            <div>Account</div>
+            <div>Chat</div>
+            <div>Transaction</div>
+        </div>
+    </div>
+    <div class="sm:h-[100vh] h-auto w-[100vw] sm:w-[60vw] bg-[#23152E] px-4 text-white">
+        <!-- Navbar -->
+        <div class="flex justify-between items-center">
+            <div class="flex space-x-2 items-center">
+                <img class="mt-4" src="../../assets/user.png" alt="">
+                <h2 class="sm:text-2xl">Arayan Memon</h2>
+            </div>
+
+            <div>
+                <p>{{date.toDateString()}}</p>
+            </div>
+
+            <div>
+                <button class="bg-black px-4 py-2 rounded-md">Logout</button>
+            </div>
+        </div>
+
+        <!-- 2 Upper cards -->
+        <div class="flex sm:space-x-6 flex-col space-y-4 sm:space-y-0 sm:flex-row">
+            <div class="rounded-lg sm:w-[25rem] w-[90vw] h-[12rem] p-4 text-center bg-[#504659] drop-shadow-md">
+                <h2 class="text-3xl my-4">Welcome Back</h2>
+                <p class="text-xl">Arayan Memon</p>
+            </div>
+            <div class="rounded-lg sm:w-[25rem] w-[90vw] h-[12rem] p-4 bg-[#504659] drop-shadow-md">
+                <h2 class="text-xl mb-4">Latest Transaction</h2>
+                <div class="flex justify-between my-3">
+                    <p>Fahad Zardari</p> 
+                    <span class="rounded-xl bg-red-200 px-3  text-sm">4000 pkr</span>
+                </div>
+                <div class="flex justify-between my-3">
+                    <p>Lunch</p> 
+                    <span class="rounded-xl bg-red-200 px-3  text-sm">800 pkr</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Central cards -->
+        <div class="flex sm:space-x-6 space-y-3 sm:space-y-0 flex-col items-center  sm:flex-row my-10">
+            <div class="rounded-lg w-[16rem] h-[10rem] p-4 bg-[#504659] drop-shadow-md">
+                <h2 class="text-2xl">Total Balance</h2>
+                <div class="flex justify-between my-6">
+                    <p class="text-xl">500k</p>
+                    <button>+</button>
+                </div>
+            </div>
+
+            <div class="rounded-lg w-[16rem] h-[10rem] p-4 bg-[#504659] drop-shadow-md">
+                <h2 class="text-2xl">Income</h2>
+                <div class="flex justify-between my-6">
+                    <p class="text-xl">100k</p>
+                    <button>+</button>
+                </div>
+            </div>
+
+            <div class="rounded-lg w-[16rem] h-[10rem] p-4 bg-[#504659] drop-shadow-md">
+                <h2 class="text-2xl">Expense</h2>
+                <div class="flex justify-between my-6">
+                    <p class="text-xl">50k</p>
+                    <button>+</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="h-[100vh] w-[28vw] bg-[#1A1818D9] px-2 py-6 text-white hidden sm:block">
+        <div class="flex flex-col">
+            <div class="my-4 px-8 text-center">
+                <h2 class="my-2 text-2xl">BudgetBuddy AI</h2>
+                <p class="my-4 text-sm">Hello I am your personal Assitant, I would love to help you in tracking your Finances.</p>
+            </div>
+
+            <div class="min-h-[67vh]">
+                <app-recieved></app-recieved>
+                <app-sent></app-sent>
+            </div>
+
+            <div class="">
+                <input type="text" class="rounded-lg w-[90%] py-1 px-2 text-black" placeholder="Write your message here" #message>
+                <button class="mx-2"><img src="../../assets/send-fill 1.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+</div>
