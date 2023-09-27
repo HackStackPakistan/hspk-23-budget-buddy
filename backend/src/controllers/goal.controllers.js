@@ -1,4 +1,3 @@
-import goalServices from "../services/goal.services.js";
 
 const goalController = {
     createGoal: async (req, res) => {

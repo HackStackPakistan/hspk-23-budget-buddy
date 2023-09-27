@@ -6,3 +6,5 @@ node_modules
 *.gz
 *.tgz
 *.pem
+*.sql
+*.toml

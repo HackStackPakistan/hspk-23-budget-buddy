@@ -7,6 +7,7 @@ import compression from "compression";
 import budgetRouter from "./routes/budget.routes.js";
 import transactionRouter from "./routes/transaction.routes.js";
 import goalRouter from "./routes/goal.routes.js";
+import authRouter from "./routes/auth.routes.js";
 
 // initialization and configuration
 const app = express();
@@ -16,10 +17,10 @@ app.use(cors());
 app.use(compression());
 
 // routes
+app.use("/auth", authRouter);
 app.use("/budgets", budgetRouter);
 app.use("/transactions", transactionRouter);
 app.use("/goals", goalRouter);
-
 
 // fallback route
 app.use((req, res) => {

@@ -1,47 +1,78 @@
-import budgetServices from "../services/budget.services.js";
-
+import prisma from "../utils/prisma.js";
 
 const budgetController = {
-        createBudget: async (req, res) => {
-            try {
-                const budget = await budgetServices.createBudget(req.body);
-                res.status(201).json(budget);
-            } catch (error) {
-                res.status(409).json({ message: error.message });
-            }
+  createBudget: async (req, res) => {
+    try {
+      const budget = await prisma.budget.create({
+        data: {
+          userID: req.body.userID,
+          budgetName: req.body.budgetName,
+          budgetAmount: req.body.budgetAmount,
+          budgetCategory: req.body.budgetCategory,
+          budgetTimePeriod: req.body.budgetTimePeriod,
+          budgetEndDate: req.body.budgetEndDate,
+          budgetStartDate: req.body.budgetStartDate,
         },
-        getAllBudgets: async (req, res) => {
-            try {
-                const budgets = await budgetServices.getAllBudgets();
-                res.status(200).json(budgets);
-            } catch (error) {
-                res.status(404).json({ message: error.message });
-            }
+      });
+      res.status(201).json(budget);
+    } catch (error) {
+      res.status(409).json({ message: error.message });
+    }
+  },
+  getAllBudgetsByUserId: async (req, res) => {
+    try {
+      const budgets = await prisma.budget.findMany({
+        where: {
+          userID: parseInt(req.params.userID),
         },
-        getBudgetById: async (req, res) => {
-            try {
-                const budget = await budgetServices.getBudgetById(req.params.id);
-                res.status(200).json(budget);
-            } catch (error) {
-                res.status(404).json({ message: error.message });
-            }
+      });
+      res.status(200).json(budgets);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  },
+  getBudgetById: async (req, res) => {
+    try {
+      const budget = await prisma.budget.findFirst({
+        where: {
+          id: parseInt(req.params.id)
+        }
+      })
+      res.status(200).json(budget);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  },
+  deleteBudgetById: async (req, res) => {
+    try {
+      const budgetID = await prisma.budget.delete({
+        where:{
+          id: parseInt(req.params.id)
+        }
+      })
+      res.status(200).json({
+        "message": `Budget with id ${req.params.id} deleted`
+      });
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  },
+  updateBudgetById: async (req, res) => {
+    try {
+      const budget = await prisma.budget.update({
+        where: {
+          id: parseInt(req.params.id)
         },
-        deleteBudgetById: async (req, res) => {
-            try {
-                const budget = await budgetServices.deleteBudgetById(req.params.id);
-                res.status(200).json(budget);
-            } catch (error) {
-                res.status(404).json({ message: error.message });
-            }
-        },
-        updateBudgetById: async (req, res) => {
-            try {
-                const budget = await budgetServices.updateBudgetById(req.params.id, req.body);
-                res.status(200).json(budget);
-            } catch (error) {
-                res.status(404).json({ message: error.message });
-            }
-        },
-}
+        data: req.body
+      })
+      res.status(200).json({
+        message: `Budget with id ${req.params.id} updated`,
+        budget: budget
+      });
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  },
+};
 
 export default budgetController;

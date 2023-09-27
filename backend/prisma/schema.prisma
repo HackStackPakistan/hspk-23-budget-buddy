@@ -12,6 +12,7 @@ model User {
   id           Int           @id @default(autoincrement())
   userID       String        @unique
   email        String        @unique
+  username     String
   transactions Transaction[]
   budgets      Budget[]
   goals        Goal[]
@@ -33,14 +34,14 @@ model Transaction {
 
 model Budget {
   id               Int      @id @default(autoincrement())
-  userID           Int
   user             User     @relation(fields: [userID], references: [id])
-  budgetName       String
-  budgetAmount     Float
-  budgetCategory   String
-  budgetTimePeriod String
-  budgetStartDate  DateTime
-  budgetEndDate    DateTime
+  userID           Int
+  budgetName       String?
+  budgetAmount     Float?
+  budgetCategory   String?
+  budgetTimePeriod String?
+  budgetStartDate  DateTime?
+  budgetEndDate    DateTime?
 }
 
 model Goal {
