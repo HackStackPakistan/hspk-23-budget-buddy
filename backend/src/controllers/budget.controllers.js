@@ -7,7 +7,8 @@ const budgetController = {
         data: {
           userID: req.body.userID,
           budgetName: req.body.budgetName,
-          budgetAmount: req.body.budgetAmount,
+          budgetAmount: parseFloat(req.body.budgetAmount),
+          budgetAmountRemaining: parseFloat(req.body.budgetAmount),
           budgetCategory: req.body.budgetCategory,
           budgetTimePeriod: req.body.budgetTimePeriod,
           budgetEndDate: req.body.budgetEndDate,
@@ -35,9 +36,9 @@ const budgetController = {
     try {
       const budget = await prisma.budget.findFirst({
         where: {
-          id: parseInt(req.params.id)
-        }
-      })
+          id: parseInt(req.params.id),
+        },
+      });
       res.status(200).json(budget);
     } catch (error) {
       res.status(404).json({ message: error.message });
@@ -46,12 +47,12 @@ const budgetController = {
   deleteBudgetById: async (req, res) => {
     try {
       const budgetID = await prisma.budget.delete({
-        where:{
-          id: parseInt(req.params.id)
-        }
-      })
+        where: {
+          id: parseInt(req.params.id),
+        },
+      });
       res.status(200).json({
-        "message": `Budget with id ${req.params.id} deleted`
+        message: `Budget with id ${req.params.id} deleted`,
       });
     } catch (error) {
       res.status(404).json({ message: error.message });
@@ -61,13 +62,13 @@ const budgetController = {
     try {
       const budget = await prisma.budget.update({
         where: {
-          id: parseInt(req.params.id)
+          id: parseInt(req.params.id),
         },
-        data: req.body
-      })
+        data: req.body,
+      });
       res.status(200).json({
         message: `Budget with id ${req.params.id} updated`,
-        budget: budget
+        budget: budget,
       });
     } catch (error) {
       res.status(404).json({ message: error.message });
