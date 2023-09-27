@@ -15,8 +15,8 @@ export class SigninComponent {
     
   }
 
-  onSignUp(email: string, password: string){
-    this.firebaseService.signup(email, password)
+  onSignUp(email: string, password: string, username: string){
+    this.firebaseService.signup(email, password, username)
   }
 
   onSignIn(email: string, password: string){

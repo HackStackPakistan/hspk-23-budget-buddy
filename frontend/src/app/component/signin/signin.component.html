@@ -18,7 +18,7 @@
 
             <div class="media-options">
                 <button (click)="signUpGoogle()">
-                    <img src="https://developers.google.com/static/identity/images/btn_google_signin_dark_normal_web.png" alt="" class="google-img">
+                    <img src="../../../assets/google_button.png" alt="" class="google-img">
                 </button>
             </div>
         </form>
@@ -28,9 +28,9 @@
         <header>Signup</header>
         <form action="#">
           <input type="text" placeholder="Enter your email" #emailSign>
+          <input type="username" placeholder="Enter your Username" #username>
           <input type="password" placeholder="Create a password" #passSign>
-          <input type="password" placeholder="Confirm your password">
-          <button class="button" (click)="onSignUp(emailSign.value, passSign.value)">Signup</button>
+          <button class="button" (click)="onSignUp(emailSign.value, passSign.value, username.value)">Signup</button>
         </form>
         <div class="signup">
           <span class="signup">Already have an account?
@@ -41,7 +41,7 @@
 
             <div class="media-options">
                 <button (click)="signUpGoogle()">
-                    <img src="https://developers.google.com/static/identity/images/btn_google_signin_dark_normal_web.png" alt="" class="google-img">
+                    <img src="../../../assets/google_button.png" alt="" class="google-img">
                 </button>
             </div>
       </div>

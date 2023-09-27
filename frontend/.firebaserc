@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "budget-buddy-8125a": {
+      "hosting": {
+        "frontend": [
+          "budget-buddy-8125a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "budget-buddy-8125a"
+  }
+}
