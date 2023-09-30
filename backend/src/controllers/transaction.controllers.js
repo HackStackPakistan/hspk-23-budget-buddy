@@ -186,6 +186,29 @@ const transactionController = {
       res.status(500).json({ error: "Internal server error" });
     }
   },
+  getTotalTransactionsByUserIdAndBudgetId: async (req, res) => {
+
+    try {
+      const { userID, budgetID } = req.params;
+      const transactions = await prisma.transaction.findMany({
+        where: {
+          userID: parseInt(userID),
+          budgetID: parseInt(budgetID),
+          transactionType: "expense",
+        },
+      });
+      let totalTransactions = 0;
+      transactions.forEach((transaction) => {
+          totalTransactions += transaction.amount;
+      });
+      res.status(200).json({
+        message: `Total transactions for user ${userID} and budget ${budgetID}`,
+        totalTransactions: totalTransactions,
+      });
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  }
 };
 
 export default transactionController;
