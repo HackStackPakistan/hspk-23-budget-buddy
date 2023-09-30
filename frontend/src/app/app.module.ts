@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardModule } from './dashboard/dashboard.module';
+
 @NgModule({
   declarations: [
     AppComponent,
