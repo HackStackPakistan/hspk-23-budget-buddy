@@ -74,6 +74,46 @@ const budgetController = {
       res.status(404).json({ message: error.message });
     }
   },
+  getFilteredBudgetsByUserId: async (req, res) => {
+    try {
+      const {
+        budgetCategory,
+        budgetTimePeriod,
+        budgetStartDate,
+        budgetEndDate,
+      } = req.query; // Parse parameters from request query
+
+      const whereClause = {
+        userID: parseInt(req.params.userID), // Convert to integer if needed
+      };
+      // Add other parameters to the where clause if provided
+      if (budgetCategory) {
+        whereClause.budgetCategory = { equals: budgetCategory };
+      }
+
+      if (budgetTimePeriod) {
+        whereClause.budgetTimePeriod = { equals: budgetTimePeriod };
+      }
+      
+      if (budgetStartDate) {
+        whereClause.budgetStartDate = { gte: new Date(budgetStartDate) };
+      }
+      
+      if (budgetEndDate) {
+        whereClause.budgetEndDate = { lte: new Date(budgetEndDate) };
+      }
+      console.log(whereClause)
+      
+      const filteredBudgets = await prisma.budget.findMany({
+        where: whereClause,
+      });
+
+      res.status(200).json(filteredBudgets);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
 };
 
 export default budgetController;

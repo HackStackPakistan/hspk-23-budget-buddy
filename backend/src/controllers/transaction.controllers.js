@@ -121,6 +121,71 @@ const transactionController = {
       res.status(404).json({ message: error.message });
     }
   },
+  getFilteredTransactionsByUserId: async (req, res) => {
+    try {
+      const {
+        transactionType,
+        amount,
+        category,
+        transactionStartDate,
+        transactionEndDate,
+        sortBy, // Field to sort by (e.g., 'createdAt')
+        sortOrder, // Sort order ('asc' or 'desc')
+        limit, // Number of transactions to return
+        budgetID,
+      } = req.query; // Parse parameters from request query
+
+      const whereClause = {
+        userID: parseInt(req.params.userID), // Convert to integer if needed
+      };
+
+      // Add other parameters to the where clause if provided
+      if (transactionType) {
+        whereClause.transactionType = { equals: transactionType };
+      }
+
+      if (amount) {
+        whereClause.amount = { equals: parseFloat(amount) }; // Convert to float if needed
+      }
+
+      if (category) {
+        whereClause.category = { equals: category };
+      }
+
+      if (transactionStartDate) {
+        whereClause.transactionDate = {
+          gte: new Date(transactionStartDate),
+        };
+      }
+
+      if (budgetID) {
+        whereClause.budgetID = { equals: parseInt(budgetID) };
+      }
+      if (transactionEndDate) {
+        whereClause.transactionDate = {
+          ...whereClause.transactionDate,
+          lte: new Date(transactionEndDate),
+        };
+      }
+
+      // Define the sorting options
+      const orderBy = {};
+      if (sortBy && sortOrder) {
+        orderBy[sortBy] = sortOrder;
+      }
+
+      const filteredTransactions = await prisma.transaction.findMany({
+        where: whereClause,
+        orderBy,
+        take: limit ? parseInt(limit) : undefined,
+      });
+
+      res.status(200).json(filteredTransactions);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
 };
 
 export default transactionController;
