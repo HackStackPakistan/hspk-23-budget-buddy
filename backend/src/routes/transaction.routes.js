@@ -7,7 +7,9 @@ transactionRouter.get("/all/user/:userID", transactionController.getAllTransacti
 transactionRouter.get("/all/budget/:budgetID", transactionController.getAllTransactionsByBudgetId);
 transactionRouter.get("/:id", transactionController.getTransactionById);
 transactionRouter.get("/filter/:userID" , transactionController.getFilteredTransactionsByUserId);
+transactionRouter.get("/total/:userID/:budgetID", transactionController.getTotalTransactionsByUserIdAndBudgetId);
 transactionRouter.delete("/:id", transactionController.deleteTransactionById);
 transactionRouter.patch("/:id", transactionController.updateTransactionById);
+
 
 export default transactionRouter;
