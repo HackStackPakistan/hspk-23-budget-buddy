@@ -4,18 +4,20 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import * as auth from 'firebase/auth';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-  constructor(public firebaseAuth: AngularFireAuth, private _router: Router) {  }
+  constructor(private firebaseAuth: AngularFireAuth, private _router: Router, private apiService: ApiService) {  }
   
   signin(email: string, password: string){
     this.firebaseAuth.signInWithEmailAndPassword(email, password)
     .then((res)=>{
-        localStorage.setItem('user', 'true');        
+        sessionStorage.setItem('user', 'true');
+        sessionStorage.setItem('userID', res.user?.uid?res.user?.uid:'');
         this._router.navigate(['dashboard'])
         
     }, err => {
@@ -26,24 +28,32 @@ export class FirebaseService {
         showConfirmButton: false,
         timer: 1500
       })
-        this._router.navigate(['/signin'])
     })
   }
 
   signup(email: string, password: string, username: string){
     this.firebaseAuth.createUserWithEmailAndPassword(email, password)
     .then((res)=>{
-        localStorage.setItem('user', 'true');
-        console.log(res);
-        
+        this.apiService.registerUser(email, res.user?.uid, username)
+        .subscribe((res)=>{
+          console.log(res);
+        })
+        sessionStorage.setItem('userID', res.user?.uid?res.user?.uid:'');
+        sessionStorage.setItem('user', 'true');
+        this._router.navigate(['dashboard'])
     }, err => {
-        alert(err.message)
-        this._router.navigate(['/signin'])
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: err.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    const user = JSON.parse(sessionStorage.getItem('user')!);
     return user !== null ? true : false;
   }
 
@@ -51,11 +61,16 @@ export class FirebaseService {
     this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
     .then((res)=>{
         this._router.navigate(['dashboard'])
-        localStorage.setItem('user', 'true');
+        sessionStorage.setItem('user', 'true');
         console.log(res);
     }, err => {
-        alert(err.message)
-        this._router.navigate(['/signin'])
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: err.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
     })
   }
 
@@ -79,7 +94,8 @@ export class FirebaseService {
   logout(){
     this.firebaseAuth.signOut()
     this._router.navigate(['/sign-in'])
-    localStorage.removeItem('user')
+    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('userID')
   }
 }
 

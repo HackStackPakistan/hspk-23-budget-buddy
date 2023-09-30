@@ -10,10 +10,10 @@
     </div>
     <div class="sm:h-[100vh] h-auto w-[100vw] sm:w-[60vw] bg-[#23152E] px-4 text-white">
         <!-- Navbar -->
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center my-4">
             <div class="flex space-x-2 items-center">
-                <img class="mt-4" src="../../assets/user.png" alt="">
-                <h2 class="sm:text-2xl">Arayan Memon</h2>
+                <img class="" src="../../assets/user.png" alt="" height="50" width="50">
+                <h2 class="sm:text-lg">{{email}}</h2>
             </div>
 
             <div>
@@ -21,7 +21,7 @@
             </div>
 
             <div>
-                <button class="bg-black px-4 py-2 rounded-md">Logout</button>
+                <button class="bg-black px-4 py-2 rounded-md" (click)="logOut()">Logout</button>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
         <div class="flex sm:space-x-6 flex-col space-y-4 sm:space-y-0 sm:flex-row">
             <div class="rounded-lg sm:w-[25rem] w-[90vw] h-[12rem] p-4 text-center bg-[#504659] drop-shadow-md">
                 <h2 class="text-3xl my-4">Welcome Back</h2>
-                <p class="text-xl">Arayan Memon</p>
+                <p class="text-2xl">{{title}}</p>
             </div>
             <div class="rounded-lg sm:w-[25rem] w-[90vw] h-[12rem] p-4 bg-[#504659] drop-shadow-md">
                 <h2 class="text-xl mb-4">Latest Transaction</h2>
@@ -49,7 +49,7 @@
             <div class="rounded-lg w-[16rem] h-[10rem] p-4 bg-[#504659] drop-shadow-md">
                 <h2 class="text-2xl">Total Balance</h2>
                 <div class="flex justify-between my-6">
-                    <p class="text-xl">500k</p>
+                    <p class="text-xl">{{totalAmount}}</p>
                     <button>+</button>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="rounded-lg w-[16rem] h-[10rem] p-4 bg-[#504659] drop-shadow-md">
                 <h2 class="text-2xl">Income</h2>
                 <div class="flex justify-between my-6">
-                    <p class="text-xl">100k</p>
+                    <p class="text-xl">{{income}}</p>
                     <button>+</button>
                 </div>
             </div>
@@ -81,14 +81,14 @@
                 <p class="my-4 text-sm">Hello I am your personal Assitant, I would love to help you in tracking your Finances.</p>
             </div>
 
-            <div class="min-h-[67vh]">
+            <div class="min-h-[67vh]" >
                 <app-recieved></app-recieved>
                 <app-sent></app-sent>
             </div>
 
             <div class="">
                 <input type="text" class="rounded-lg w-[90%] py-1 px-2 text-black" placeholder="Write your message here" #message>
-                <button class="mx-2"><img src="../../assets/send-fill 1.png" alt=""></button>
+                <button class="mx-2" (click)="sendmsg(message.value)"><img src="../../assets/send-fill 1.png" alt=""></button>
             </div>
         </div>
     </div>

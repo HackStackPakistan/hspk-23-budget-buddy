@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'frontend';
 
   isSignedIn = 'false';
-  constructor (public firebaseService: FirebaseService) {}
+  constructor() {}
 
   ngOnInit(){
     // this.isSignedIn = localStorage.getItem('token');

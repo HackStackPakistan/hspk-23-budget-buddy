@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { FirebaseService } from './services/firebase.service';
-
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
@@ -18,7 +16,6 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +30,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     AngularFireAuthModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     // AuthModule.forRoot(environment.auth)
   ],

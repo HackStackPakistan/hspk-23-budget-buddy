@@ -1,4 +1,7 @@
 export const environment = {
+  apiKey: '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',
+  apiUrl: 'https://api.openai.com/v1/engines/davinci/completions',
+  apiHead: 'http://localhost:8080',
   firebase: {
     projectId: 'budget-buddy-8125a',
     appId: '1:723345358394:web:0b811c440d9fe20ea3bf03',
