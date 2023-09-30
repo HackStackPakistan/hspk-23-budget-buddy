@@ -1,5 +1,5 @@
 export const environment = {
-  apiKey: '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',
+  apiKey: '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',
   apiUrl: 'https://api.openai.com/v1/engines/davinci/completions',
   apiHead: 'http://localhost:8080',
   firebase: {

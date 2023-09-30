@@ -49,7 +49,13 @@ export class DashboardComponent {
 
 
   sendmsg(message: string){
-    this.sentMsgs.push(message);
+    const chatElement = document.getElementById('chat');
+    if (chatElement) {
+      const newElement = document.createElement('app-sent');
+    
+      chatElement.appendChild(newElement);
+    }
+    this.getChat(message);
   }
 
 
@@ -68,6 +74,12 @@ export class DashboardComponent {
   }).then( res =>{
     console.log(res.choices[0].message.content);
     this.response = res.choices[0].message.content;
+    const chatElement = document.getElementById('chat');
+    if (chatElement) {
+      const newElement = document.createElement('app-recieved');
+      newElement.setAttribute('Data', this.response);
+      chatElement.appendChild(newElement);
+    }
   })
   }
 
