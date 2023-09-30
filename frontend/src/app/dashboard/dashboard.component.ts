@@ -11,18 +11,52 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  showModalExpense = false;
+  showModalIncome = false;
+  showModalBal = false;
 
   response: any = '';
   title: string = '';
   email: string = '';
   income: string = '';
   totalAmount: string = '';
+  totalTransactions: string = '';
   sentMsgs: string[] = [];
-  constructor(public firebaseService: FirebaseService, private _router: Router, private apiService: ApiService) {
+  trans1: Array<string> = [];
+  trans2: Array<string> = [];
+  constructor(public firebaseService: FirebaseService, private _router: Router, public apiService: ApiService) {
     this.getUserInfo();
     this.getBudgetInfo();
+    this.getTotalTransactions();
+    this.getFileteredTransactions();
   }
   date = new Date();
+
+  toggleModalExpense(){
+    this.showModalExpense = !this.showModalExpense;
+  }
+
+  toggleModalIncome(){
+    this.showModalIncome = !this.showModalIncome;
+  }
+
+  toggleModalBal(){
+    this.showModalBal = !this.showModalBal;
+  }
+
+  addBudget(name: string, category: string, amount: string){
+    this.apiService.createBudget(name, category, amount)
+    .subscribe((res)=>{
+      console.log(res);
+    })
+  }
+
+  addTransaction(expense: string, category: string, payment: string){
+    this.apiService.createTransaction(expense, category, payment, this.date.toDateString())
+    .subscribe((res)=>{
+      console.log(res);
+    })
+  }
 
   logOut(){
     this.firebaseService.logout()
@@ -40,12 +74,29 @@ export class DashboardComponent {
   getBudgetInfo(){
     this.apiService.getAllBudgetsByUserID()
     .subscribe((res)=>{
+      sessionStorage.setItem('budgetID', res[0].id);
       this.income = res[0].budgetAmount;
       this.totalAmount = res[0].budgetAmountRemaining;
     })
   }
 
+  getTotalTransactions(){
+    this.apiService.getTotalTransactionsByUserIdAndBudgetId()
+    .subscribe((res: any) => {
+      this.totalTransactions = res.totalTransactions;
+    })
+  }
 
+  getFileteredTransactions(){
+    this.apiService.getFilteredTransactionsByUserId()
+    .subscribe((res: any) => {
+      console.log(res);
+        this.trans1[0] = res[0].amount;
+        this.trans1[1] = res[0].category;
+        this.trans2[0] = res[1].amount;
+        this.trans2[1] = res[1].category;
+    })
+  }
 
 
   sendmsg(message: string){
@@ -55,7 +106,7 @@ export class DashboardComponent {
     
       chatElement.appendChild(newElement);
     }
-    this.getChat(message);
+    // this.getChat(message);
   }
 
 

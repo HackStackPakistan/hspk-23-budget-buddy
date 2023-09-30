@@ -7,9 +7,11 @@
     alt="logo"
   />
   <div class="hidden md:flex flex-row gap-x-16 text-2xl">
-    <a href="" class="hover:text-[#0BB973]">Home</a>
-    <a href="" class="hover:text-[#0BB973]">About</a>
-    <a href="" class="hover:text-[#0BB973]">Contact</a>
+    <a href="#home" class="hover:text-[#0BB973]">Home</a>
+    <a href="#about" class="hover:text-[#0BB973]">About</a>
+    <a href="#contact" class="hover:text-[#0BB973]">Contact</a>
+    <a href="/sign-in" class="hover:text-[#0BB973]">Login</a>
+    <a href="/sign-in" class="hover:text-[#0BB973]">Register</a>
   </div>
   <div class="w-10 h-10 md:hidden" (click)="toggleMenu()">
     <svg
@@ -51,12 +53,11 @@
 >
   <a class="text-2xl font-bold text-center my-4" routerLink="/"> Home </a>
   <a class="text-2xl font-bold text-center my-4" routerLink="#about"> About </a>
-  <a class="text-2xl font-bold text-center my-4" routerLink="/contact">
-    Contact
-  </a>
+  <a class="text-2xl font-bold text-center my-4" routerLink="/">Contact</a>
+  <a class="text-2xl font-bold text-center my-4" routerLink="/sign-in">Login</a>
 </section>
 
-<section
+<section id="home"
   class="flex flex-col gap-y-8 md:gap-y-28 bg-[#1E1E1E] px-4 pt-28 md:px-16 md:pt-56"
 >
   <div class="flex flex-col md:flex-row justify-between items-center">
@@ -82,7 +83,7 @@
 
 <section></section>
 
-<section class="features p-4">
+<section id="about" class="features p-4">
   <h1
     class="uppercase text-xl md:text-4xl my-8 md:my-16 text-[#0bb973] font-semibold text-center"
   >
@@ -149,7 +150,7 @@
   </div>
 </section>
 
-<section class="dev-team bg-[#0BB973] p-4 md:p-8 lg:p-16 text-neutral-100">
+<section id="contact" class="dev-team bg-[#0BB973] p-4 md:p-8 lg:p-16 text-neutral-100">
   <h1 class="uppercase font-semibold text-4xl md:text-6xl lg:text-7xl">
     Meet the developers team
   </h1>

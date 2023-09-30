@@ -19,7 +19,6 @@ export class FirebaseService {
         sessionStorage.setItem('user', 'true');
         sessionStorage.setItem('userID', res.user?.uid?res.user?.uid:'');
         this._router.navigate(['dashboard'])
-        
     }, err => {
         Swal.fire({
         position: 'top',
@@ -36,7 +35,6 @@ export class FirebaseService {
     .then((res)=>{
         this.apiService.registerUser(email, res.user?.uid, username)
         .subscribe((res)=>{
-          console.log(res);
         })
         sessionStorage.setItem('userID', res.user?.uid?res.user?.uid:'');
         sessionStorage.setItem('user', 'true');
@@ -58,11 +56,14 @@ export class FirebaseService {
   }
 
   signUpWithGoogle(){
-    this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
-    .then((res)=>{
+    return this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
+    .then((res: any)=>{
+      this.apiService.registerUser(res.user?.email, res.user?.uid, res.user?.displayName)
+      .subscribe((res)=>{
+      })
         this._router.navigate(['dashboard'])
+        sessionStorage.setItem('userID', res.user?.uid?res.user?.uid:'');
         sessionStorage.setItem('user', 'true');
-        console.log(res);
     }, err => {
       Swal.fire({
         position: 'top',

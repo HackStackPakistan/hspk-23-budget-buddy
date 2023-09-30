@@ -41,12 +41,37 @@ export class ApiService {
     return this.http.get(`${environment.apiHead}/transactions/all/budget/`, {})
   }
 
+  getTotalTransactionsByUserIdAndBudgetId(){
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json'
+    })
+    return this.http.get(`${environment.apiHead}/transactions/total/${sessionStorage.getItem('id')}/${sessionStorage.getItem('budgetID')}`, {headers})
+  }
+
+  getFilteredTransactionsByUserId(){
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json'
+    })
+    return this.http.get(`${environment.apiHead}/transactions/filter/${sessionStorage.getItem('id')}`, {headers})
+  }
   getTransactionByID(){
     return this.http.get(`${environment.apiHead}/transactions/`, {})
   }
 
-  createTransaction(){
-    // return this.http.post(`${environment.apiHead}/transactions`, {userID: uID, budgetID: bID, transactionDate: date, transactionType: type, amount: amount, category: category, paymentMethod: paymentMethod, description: description})
+  createTransaction(amount: string, category: string, payment: string ,date: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json'
+    })
+    const requestBody = {userID: sessionStorage.getItem('id'), 
+    budgetID: sessionStorage.getItem('budgetID'), 
+    transactionDate: date, 
+    transactionType: 'expense', 
+    amount: amount, 
+    category: category, 
+    paymentMethod: payment, 
+    description: category
+  };
+    return this.http.post(`${environment.apiHead}/transactions`, requestBody , {headers})
   }
 
   delTransaction(id: string){
@@ -70,8 +95,11 @@ export class ApiService {
     return this.http.get(`${environment.apiHead}/budgets/1`, {})
   }
 
-  createBudget(){
-    return this.http.post(`${environment.apiHead}/budgets`, {})
+  createBudget(name: string, amount: string, category: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json'
+    })
+    return this.http.post(`${environment.apiHead}/budgets`, {userID: sessionStorage.getItem('id'), budgetName: name, budgetAmount: amount,budgetCategory: category,budgetTimePeriod: "Monthly","budgetStartDate": "2023-09-01T00:00:00Z","budgetEndDate": "2023-09-30T23:59:59Z"}, {headers})
   }
 
   delBudget(id: string){
